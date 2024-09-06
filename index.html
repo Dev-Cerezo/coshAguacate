@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>COSECHA AGUACATE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <script type="text/javascript"
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+  <script src="bootstrap-table-export.js"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.js"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/toolbar/bootstrap-table-toolbar.js"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table-locale-all.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.16.0/extensions/mobile/bootstrap-table-mobile.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script type="text/javascript" src="tableExport.js"></script>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
+  <base target="_top"> <!-- EL REDIRECT NECESITA ESTE DATO  !!! OJO -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+  <link rel="icon" href="imagenes/ElCerezoOriginal.webp">
+  <style>
+
+
+  </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+      <div class="container">
+        <img style="width: 100px;" class="text-center img-fluid " src="imagenes/logotextoblanco.webp" alt="">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html"> <i class="fas fa-home fa-2x"></i> </a>
+            </li>
+            <li class="nav-item">
+              <b class="nav-link bg-secondary text-light" id="usuario"></b>
+            </li>
+            <li class="nav-item">
+              -
+            </li>
+            <li class="nav-item">
+              <button class="btn btn-success" id="salir"><i class="bi bi-box-arrow-left"></i></button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav><br>
+
+</head>
+
+  
+
+  <div id="sessionWarning" style="display: none; color: red;">
+    TU SESSIÓN SERÁ CERRADA EN 5 MINUTOS POR INACTIVIDAD.
+  </div>
+  <center>
+    <div class="container row">
+        <div class=" col-12 text-center mt-3" id="btn_recepción">
+            <a href="registro.html" type="button"
+              class="rounded list-group-item list-group-item-action flex-column align-items-center btnMenu4 bg-primary">
+              <b class="mb-1 text-light tex fw-bold"><i class="bi bi-card-checklist"></i>&nbsp;REGISTRO COSECHA AGUACATE&nbsp; </b>
+            </a>
+          </div>
+
+      <div class="col-12 my-3">
+        <h3 align="center" class="bg-success text-light">
+          <b>CONSULTA DE REGISTROS COSECHA AGUACATE</b>
+        </h3>
+        <br>
+      </div>
+      <!-- <input type="hidden" class="form-control" id="fechaftxt" name="fechaftxt"> -->
+      <!-- <input type="hidden" class="form-control" id="fechaitxt" name="fechaitxt"> -->
+      <div class="col-xl-3 col-md-6 col-sm-12">
+        <input type="date" class="form-control form-control-lg selectpicker bg-success"
+          style="width: 100%; padding: 15px; color: white;" id="fechaitxt" placeholder="Fecha Inicial" required>
+      </div>
+      <div class="col-xl-3 col-md-6 col-sm-12">
+        <h1 class="text-success"><b style="width: 100%; padding: 15px;">AL</b></h1>
+      </div>
+      <div class="col-xl-3 col-md-6 col-sm-12">
+        <input type="date" class="form-control form-control-lg selectpicker bg-success"
+          style="width: 100%; padding: 15px; color: white" id="fechaftxt" placeholder="Fecha Final" required>
+      </div>
+
+
+      <div class="col-xl-3 col-md-6 col-sm-12">
+        <button class="btn btn-primary btn-block" style="width: 100%; padding: 15px;" id="buscar"><b>BUSCAR</b> <i
+            class="fas fa-search"></i></button>
+      </div>
+
+
+      <div class="card col-12">
+
+       
+       
+       
+       
+       
+        <table 
+        id="table" 
+        data-locale="es-MX" 
+        data-toggle="table" 
+        data-height="1000" 
+        data-show-toggle="true"
+        data-show-columns="true" 
+        data-show-columns-toggle-all="true" 
+        data-show-export="true" 
+        data-toolbar="#toolbar"
+        data-pagination="true" 
+        data-search="true" 
+        data-search-align="left" 
+        data-show-search-button="true"
+        data-filter-control="true" 
+        class="bg-white table-sm table-striped"
+        data-mobile-responsive="true"
+        data-row-style="rowStyle" 
+        data-page-size="20" 
+        data-page-list="[20,50, 100, All]">
+          <thead class="bg-success">
+            <tr>
+                <th data-field="id_cosecha" data-filter-control="input" data-visible="false"> ID </th>
+                <th data-field="folio" data-filter-control="input" data-visible="true"> FOLIO</th>
+                <th data-field="fecha" data-filter-control="select" data-visible="false"> FECHA </th>
+                <th data-field="rancho" data-filter-control="input" data-visible="true">CODIGO RANCHO </th>
+                <th data-field="DESCRIPCION"      data-filter-control="input"   data-visible="true"                >DESC RANCHITO   </th>
+                <th data-field="kg_netos"      data-filter-control="input"   data-visible="true"                >KG_NETOS  </th>
+                <th data-field="cliente" data-filter-control="input" data-visible="true"> CLIENTE </th>
+                <th data-field="placas" data-filter-control="input" data-visible="false"> PLACAS </th>
+                <th data-field="chofer" data-filter-control="select" data-visible="true"> CHOFER </th>
+                <th data-field="cuadrillero" data-filter-control="select" data-visible="true"> CUADRILLERO </th>
+                <th data-field="tipo_corte" data-filter-control="select" data-visible="true"> TIPO CORTE </th>
+                <th data-field="fecha_actualizacion" data-filter-control="select" data-visible="true"> FECHA ACTUALIZACIÓN </th>
+                <th data-field="usuario" data-filter-control="select" data-visible="true"> USUARIO </th>
+                <th data-field="id_opciones" data-visible="true" data-filter-control="select" data-formatter="opciones"> OPCIONES </th>
+
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </center>
+
+
+
+
+  <!-- <script src="js/consulta.js"></script> -->
+  <!--<script src="deploy/consultaResponsivas.js"></script>-->
+
+
+  <div class="modal fade" id="zoom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">DETALLE DE COSECHA</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-12">
+      
+            <table 
+            id="table2" 
+            data-locale="es-MX" 
+            data-toggle="table" 
+            data-height="1000" 
+            data-show-toggle="true"
+            data-show-columns="true" 
+            data-show-columns-toggle-all="true" 
+            data-show-export="true" 
+            data-toolbar="#toolbar"
+            data-pagination="true" 
+            data-search="true" 
+            data-search-align="left" 
+            data-show-search-button="true"
+            data-filter-control="true" 
+            class="bg-white table-sm table-striped"
+            data-mobile-responsive="true"
+            data-row-style="rowStyle" 
+            data-page-size="20" 
+            data-page-list="[20,50, 100, All]">
+              <thead class="bg-success">
+                <tr>
+                  <th data-field="id_cosecha"     data-filter-control="input"   data-visible="false"                >ID COSECHA </th>
+                  <th data-field="id_sectorcosh"     data-filter-control="input"   data-visible="false"                >ID </th>
+                  <th data-field="fecha_formato"   data-filter-control="select"   data-visible="true"  > FECHA </th>
+                  <th data-field="fecha_ini"   data-filter-control="select"   data-visible="true"  > HRA INICIO </th>
+                  <th data-field="fecha_fin"   data-filter-control="select"   data-visible="true"  > HRA FIN </th>
+                  <th data-field="ranchito"      data-filter-control="input"   data-visible="true"                >CODIGO RANCHITO   </th>
+                  <th data-field="DESCRIPCION"      data-filter-control="input"   data-visible="true"                >DESC RANCHITO   </th>
+                  <th data-field="sector"      data-filter-control="input"   data-visible="true"                > SECTOR   </th>
+                  <th data-field="cajas"     data-filter-control="input"   data-visible="true"                > CAJAS  </th>
+                  <th data-field="resultado"     data-filter-control="input"   data-visible="true"                > KG_SECTOR  </th>
+                  <th data-field="fecha_actualizacion"     data-filter-control="input"   data-visible="false" > FECHA_ACTUALIZACIÓN </th>
+                  <th data-field="usuario"     data-filter-control="input"   data-visible="false"  data-formatter="criterioppm_reg"> USUARIO </th>
+                </tr>
+              </thead>
+            </table>
+    
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <script src="js/close.js"></script>
+  <script src="js/index.js"></script>
+  <footer class="custom-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-6" style="font-size: 7px;">
+          <p>Developed by Grupo agricola el cerezo.</p> 
+          <p>© 2024 - Todos los derechos reservados</p>
+        </div>
+      </div>
+    </div>
+  </footer>	
+</body>
+
+</html>
+
+
+
+
+
+

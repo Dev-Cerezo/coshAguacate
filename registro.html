@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+
+
+  <title>COSECHA AGUACATE</title>
+  <link rel="icon" href="imagenes/ElCerezoOriginal.webp">
+  <style>
+.no-spinners::-webkit-inner-spin-button,
+.no-spinners::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.no-spinners {
+  -moz-appearance: textfield;
+}
+#prev-img{
+  display: none;
+}
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <div class="container">
+      <img style="width: 100px;" class="text-center img-fluid" src="imagenes/logotextoblanco.webp" alt="">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html"> <i class="fas fa-home"></i> </a>
+          </li>
+          <li class="nav-item">
+            <b class="nav-link bg-secondary text-light" id="usuario"></b>
+          </li>
+          <li class="nav-item">
+            -
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-success" id="salir"><i class="bi bi-box-arrow-left"></i></button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav><br>
+  <div id="sessionWarning" style="display: none; color: red;">
+    TU SESSIÓN SERÁ CERRADA EN 5 MINUTOS POR INACTIVIDAD.
+  </div>
+
+  <center>
+   
+
+    <div class="container" id="responsiva">
+      <div class="card">
+        <div class="card-body ">
+          <div class="btn-group-vertical btn-block" role="group" aria-label="Menú">
+    
+          </div><br>
+          <form id="form_coshAguacate" action="" method="post">
+            <div class="row bg-secondary my-2 container text-light" id="form-asignar-unidad">
+
+              <div class="col-xl-6 col-md-6 col-sm-12">
+                <label for="fecha_muestreo">FECHA</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fas fa-calendar fa-lg"  style="color: #28a745!important;"></i> </span>
+                  </div>
+                  <input type="date" class="form-control form-control-lg selectpicker" name="fecha"
+                    id="fecha" required>
+                </div>
+              </div>
+
+
+              <div class="col-xl-6 col-md-6 col-sm-12">
+                <label for="direccion">FOLIO </label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                   <span class="input-group-text"><i class="bi bi-file-binary fa-lg" style="color: #28a745!important;"></i> </span>
+                  </div>
+                  <input type="number" min="0" class="form-control form-control-lg selectpicker search-input no-spinners" id="folio"
+                    name="folio" placeholder="FOLIO" autocomplete='off' required>
+                  
+                </div>
+                <div class="select-dropdown" id="inputEconomico"></div>
+              </div>
+
+
+              <div class="col-xl-6 col-md-6 col-sm-12">
+                <label for="chofer">CHOFER</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                   <span class="input-group-text"><i class="bi bi-person-badge fa-lg" style="color: #28a745!important;"></i></span>
+                  </div>
+                  <input type="text" class="form-control form-control-lg selectpicker search-input" id="chofer"
+                    name="chofer" placeholder="CHOFER" autocomplete='off' required>
+                  
+                </div>
+              </div>
+
+              <div class="col-xl-6 col-md-6 col-sm-12">
+                <label for="cuadrillero">CUADRILLERO</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                   <span class="input-group-text"><i class="bi bi-person-badge fa-lg" style="color: #28a745!important;"></i></span>
+                  </div>
+                  <input type="text" class="form-control form-control-lg selectpicker search-input" id="cuadrillero"
+                    name="cuadrillero" placeholder="CUADRILLERO" autocomplete='off' required>
+                  
+                </div>
+              </div>
+
+              <div class="col-xl-6 col-md-6 col-sm-12">
+                <label for="cliente">CLIENTE</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                   <span class="input-group-text"><i class="bi bi-person-badge fa-lg" style="color: #28a745!important;"></i></span>
+                  </div>
+                  <input type="text" class="form-control form-control-lg selectpicker search-input" id="cliente"
+                    name="cliente" placeholder="CLIENTE" autocomplete='off' required>
+                  
+                </div>
+              </div>
+
+              <div class="col-xl-6 col-md-6 col-sm-12">
+                <label for="placas">PLACAS</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                   <span class="input-group-text"><i class="bi bi-badge-sd fa-lg" style="color: #28a745!important;"></i></span>
+                  </div>
+                  <input type="text" class="form-control form-control-lg selectpicker search-input" id="placas"
+                    name="placas" placeholder="PLACAS" autocomplete='off' required>
+                  
+                </div>
+              </div>
+
+
+              <div class="col-xl-6 col-md-6 col-sm-12">
+                <label for="centro_costo">CENTROS DE COSTO DE FACTURACIÓN</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fas fa-project-diagram fa-lg"  style="color: #28a745!important;"></i> </span>
+                  </div>
+                  <select class="form-control form-control-lg selectpicker text-dark" id="centro_costo_facturacion"
+                     name="centro_costo_facturacion" required>
+                    <option value="">SELECCIONE CENTRO COSTO</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="col-xl-6 col-md-6 col-sm-12">
+                <label for="direccion">KILOS NETOS </label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                   <span class="input-group-text"><i class="bi bi-file-binary fa-lg" style="color: #28a745!important;"></i> </span>
+                  </div>
+                  <input type="number" min="0" class="form-control form-control-lg selectpicker search-input no-spinners" id="kg_netos"
+                    name="kg_netos" placeholder="KILOS TOTALES" autocomplete='off' required>
+                  
+                </div>
+                <div class="select-dropdown" id="inputEconomico"></div>
+              </div>
+              
+
+              <div class="col-xl-6 col-md-6 col-sm-12">
+                <label for="centro_costo">RANCHOS DE CORTE</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fas fa-project-diagram fa-lg"  style="color: #28a745!important;"></i> </span>
+                  </div>
+                  <select class="form-control form-control-lg selectpicker text-dark" id="centro_costo_corte"
+                     name="centro_costo_corte" required>
+                    <option value="">SELECCIONE CENTRO COSTO</option>
+                  </select>
+                </div>
+              </div>
+
+       
+              <div class="col-xl-6 col-md-6 col-sm-12">
+                <label for="vivero">TIPO CORTE</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fas fa-tasks fa-lg"  style="color: #28a745!important;"></i> </span>
+                  </div>
+                  <select class="form-control form-control-lg selectpicker text-dark" id="tipo_corte"
+                    placeholder="VIVERO" name="tipo_corte" required>
+                    <option value="">SELECCIONE TIPO</option>
+                    <option value="PELA PALO">PELA PALO</option>
+                    <option value="100 PARA ARRIBA">100 A MAYORES</option>
+                    <option value="110 PARA ARRIBA">110 A MAYORES</option>
+                    <option value="120 PARA ARRIBA">120 A MAYORES</option>
+                    <option value="130 PARA ARRIBA">130 A MAYORES</option>
+                    <option value="140 PARA ARRIBA">140 A MAYORES</option>
+                    <option value="150 PARA ARRIBA">150 A MAYORES</option>
+                    <option value="160 PARA ARRIBA">160 A MAYORES</option>
+                    <option value="170 PARA ARRIBA">170 A MAYORES</option>
+                    <option value="180 PARA ARRIBA">180 A MAYORES</option>
+                    <option value="190 PARA ARRIBA">190 A MAYORES</option>
+                    <option value="200 PARA ARRIBA">200 A MAYORES</option>
+                  </select>
+                </div>
+              </div>
+
+              
+
+              <div class="row container col-12 my-4" id="variedad">
+
+
+              
+
+                <div class="col-12">
+                  <label for="conteo_entrega">DISTRIBUCIÓN POR SECTORES</label>
+               
+                </div>
+
+              </div>
+
+            
+              <div class="col-12 my-4">
+                <button type="submit" class="btn1 btn-primary btn-block rounded shadow-lg" id="btn_agregar" style="height: 80px;" disabled = "true">
+                  <b>+ AGREGAR</b> </button>
+                </button>
+              </div><br> 
+
+              <div class="col-12 my-4">
+                <button type="submit" class="btn1 btn-success btn-block rounded shadow-lg" data-toggle="modal" data-target="#zoom-qr" style="height: 80px;">
+                  <i class="far fa-save fa-3x"></i></button>
+                </button>
+              </div><br>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div><br>
+  </center>
+
+ 
+  
+  <script src="js/registro.js"></script>
+  <script src="js/close.js"></script>
+		
+  <footer class="custom-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-6" style="font-size: 7px;">
+          <p>Developed by Grupo Agricola el Cerezo.</p> 
+          <p>© 2024 - Todos los derechos reservados</p>
+        </div>
+      </div>
+    </div>
+  </footer>	
+</body>
+
+</html>
